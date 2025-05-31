@@ -15,4 +15,24 @@ class ReaderService
         $readers = $this->readerRepository->get();
         return $readers;
     }
+
+     public function details(int $id)
+    {
+        return $this->readerRepository->details($id);
+    }
+
+    public function store (array $data)
+    {
+        return $this->readerRepository->store($data);
+    }
+
+    public function update(int $id, array $data)
+    {
+        return $this->readerRepository->update($id,$data);
+    }
+
+    public function delete(int $id)
+    {
+        return $this->readerRepository->delete($id);
+    }
 }
