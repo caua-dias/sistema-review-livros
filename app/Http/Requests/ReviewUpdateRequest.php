@@ -23,7 +23,7 @@ class ReviewUpdateRequest extends FormRequest
     {
         return [
             'grade'=> 'sometimes|required|numeric|min:0|max:5',
-            'text'=> 'sometimes|required|text|',
+            'text'=> 'sometimes|required|string|',
         ];
     }
 }

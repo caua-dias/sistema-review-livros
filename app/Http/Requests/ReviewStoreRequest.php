@@ -11,7 +11,7 @@ class ReviewStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,7 @@ class ReviewStoreRequest extends FormRequest
     {
         return [
             'grade'=> 'required|numeric|min:0|max:5',
-            'text'=> 'required|text|',
+            'text'=> 'required|string|',
         ];
     }
 }

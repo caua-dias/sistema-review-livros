@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\ReviewService;
+use App\Service\ReviewService;
 use App\Http\Requests\ReviewStoreRequest;
 use App\Http\Requests\ReviewUpdateRequest;
 use App\Http\Resources\ReviewResource;
@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ReviewController extends Controller
 {
-        private ReviewService $reviewService;
+    private ReviewService $reviewService;
     public function __construct(ReviewService $reviewService) {
         $this->reviewService = $reviewService;
     }
