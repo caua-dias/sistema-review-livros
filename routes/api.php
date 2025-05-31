@@ -6,7 +6,7 @@ use App\Http\Controllers\ReaderController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\BookController;
-
+use App\Http\Controllers\AuthorController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -42,4 +42,12 @@ Route::controller(BookController::class)->group( function() {
     Route::post('/books','store');
     Route::patch('/books/{id}', 'update');
     Route::delete('/books/{id}','delete');
+});
+
+Route::controller(AuthorController::class)->group( function() {
+    Route::get('/authors','get');
+    Route::get('/authors/{id}', 'details');
+    Route::post('/authors','store');
+    Route::patch('/authors/{id}', 'update');
+    Route::delete('/authors/{id}','delete');
 });
