@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReaderController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\BookController;
+
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -32,4 +34,12 @@ Route::controller(GenreController::class)->group( function() {
     Route::post('/genres','store');
     Route::patch('/genres/{id}', 'update');
     Route::delete('/genres/{id}','delete');
+});
+
+Route::controller(BookController::class)->group( function() {
+    Route::get('/books','get');
+    Route::get('/books/{id}', 'details');
+    Route::post('/books','store');
+    Route::patch('/books/{id}', 'update');
+    Route::delete('/books/{id}','delete');
 });
