@@ -8,4 +8,9 @@ class Reader extends Model
 {
     protected $table = 'readers';
     protected $fillable = ['name','email','password' ];
+    
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
 }
