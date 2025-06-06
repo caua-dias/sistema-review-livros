@@ -7,6 +7,7 @@ use App\Service\ReaderService;
 use App\Http\Requests\ReaderStoreRequest;
 use App\Http\Requests\ReaderUpdateRequest;
 use App\Http\Resources\ReaderResource;
+use App\Http\Resources\ReviewResource;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ReaderController extends Controller
@@ -56,5 +57,15 @@ class ReaderController extends Controller
             return response()->json(['error'=>'Reader not found'],404);
         }
         return new ReaderResource($reader);
+    }
+
+    public function getReaderReviews(int $id)
+    {
+        try {
+            $reviews = $this->readerService->getReaderReviews($id);
+            return ReviewResource::collection($reviews);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['error' => 'Reader not found'], 404);
+        }
     }
 }

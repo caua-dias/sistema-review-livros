@@ -7,6 +7,7 @@ use App\Service\AuthorService;
 use App\Http\Requests\AuthorStoreRequest;
 use App\Http\Requests\AuthorUpdateRequest;
 use App\Http\Resources\AuthorResource;
+use App\Http\Resources\BookResource;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class AuthorController extends Controller
@@ -56,5 +57,21 @@ class AuthorController extends Controller
             return response()->json(['error'=>'Author not found'],404);
         }
         return new AuthorResource($author);
+    }
+
+    public function getAuthorBooks(int $id)
+    {
+        try {
+            $books = $this->authorService->getAuthorBooks($id);
+            return BookResource::collection($books);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['error' => 'Author not found'], 404);
+        }
+    }
+
+    public function getAuthorsWithBooks()
+    {
+        $authors = $this->authorService->getAuthorsWithBooks();
+        return AuthorResource::collection($authors);
     }
 }

@@ -7,6 +7,7 @@ use App\Service\GenreService;
 use App\Http\Requests\GenreStoreRequest;
 use App\Http\Requests\GenreUpdateRequest;
 use App\Http\Resources\GenreResource;
+use App\Http\Resources\BookResource;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class GenreController extends Controller
@@ -56,5 +57,21 @@ class GenreController extends Controller
             return response()->json(['error'=>'Genre not found'],404);
         }
         return new GenreResource($genre);
+    }
+
+    public function getGenreBooks(int $id)
+    {
+        try {
+            $books = $this->genreService->getGenreBooks($id);
+            return BookResource::collection($books);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['error' => 'Genre not found'], 404);
+        }
+    }
+
+    public function getGenresWithBooks()
+    {
+        $genres = $this->genreService->getGenresWithBooks();
+        return GenreResource::collection($genres);
     }
 }

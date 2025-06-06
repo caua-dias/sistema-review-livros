@@ -7,6 +7,7 @@ use App\Service\BookService;
 use App\Http\Requests\BookStoreRequest;
 use App\Http\Requests\BookUpdateRequest;
 use App\Http\Resources\BookResource;
+use App\Http\Resources\ReviewResource;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class BookController extends Controller
@@ -56,5 +57,21 @@ class BookController extends Controller
             return response()->json(['error'=>'Book not found'],404);
         }
         return new BookResource($book);
+    }
+
+    public function getBookReviews(int $id)
+    {
+        try {
+            $reviews = $this->bookService->getBookReviews($id);
+            return ReviewResource::collection($reviews);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['error' => 'Book not found'], 404);
+        }
+    }
+
+    public function getBooksWithRelations()
+    {
+        $books = $this->bookService->getBooksWithRelations();
+        return BookResource::collection($books);
     }
 }

@@ -18,6 +18,7 @@ class ReviewResource extends JsonResource
             'id' => $this->id,
             'grade' => $this->grade,
             'text' => $this->text,
+            'reader' => new ReaderResource($this->whenLoaded('reader')),
         ];
 
 

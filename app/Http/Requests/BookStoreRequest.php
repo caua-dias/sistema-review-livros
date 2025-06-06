@@ -24,6 +24,8 @@ class BookStoreRequest extends FormRequest
         return [
             'title'=> 'required|string|max:255',
             'synopsis'=> 'required|string|max:255',
+            'author_id' => ['required', 'integer', 'exists:authors,id'],
+            'genre_id' => ['required', 'integer', 'exists:genres,id']
         ];
     }
 }

@@ -24,6 +24,8 @@ class ReviewStoreRequest extends FormRequest
         return [
             'grade'=> 'required|numeric|min:0|max:5',
             'text'=> 'required|string|',
+            'reader_id' => ['required', 'integer', 'exists:authors,id'],
+            'book_id' => ['required', 'integer', 'exists:genres,id']
         ];
     }
 }

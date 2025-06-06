@@ -35,4 +35,14 @@ class GenreService
     {
         return $this->genreRepository->delete($id);
     }
+
+    public function getGenreBooks(int $genreId)
+    {
+        return $this->genreRepository->getGenreBooks($genreId);
+    }
+
+    public function getGenresWithBooks()
+    {
+        return $this->genreRepository->getGenresWithBooks();
+    }
 }

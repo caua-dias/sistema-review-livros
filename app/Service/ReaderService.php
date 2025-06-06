@@ -35,4 +35,9 @@ class ReaderService
     {
         return $this->readerRepository->delete($id);
     }
+
+    public function getReaderReviews(int $readerId)
+    {
+        return $this->readerRepository->getReaderReviews($readerId);
+    }
 }

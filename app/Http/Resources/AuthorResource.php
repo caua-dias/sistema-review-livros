@@ -17,7 +17,7 @@ class AuthorResource extends JsonResource
         $data = [
             'id' => $this->id,
             'name' => $this->name,
-            'date_of_birth' => $this->date,
+            'date_of_birth' => $this->date_of_birth,
             'biography' => $this->biography
         ];
 

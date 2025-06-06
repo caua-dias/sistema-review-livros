@@ -35,4 +35,14 @@ class BookService
     {
         return $this->bookRepository->delete($id);
     }
+
+    public function getBookReviews(int $bookId)
+    {
+        return $this->bookRepository->getBookReviews($bookId);
+    }
+
+    public function getBooksWithRelations()
+    {
+        return $this->bookRepository->getBooksWithRelations();
+    }
 }

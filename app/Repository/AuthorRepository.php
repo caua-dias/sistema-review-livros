@@ -32,4 +32,15 @@ public function delete(int $id)
         return $author;
     }
 
+    public function getAuthorBooks(int $authorId)
+    {
+        $author = Author::findOrFail($authorId);
+        return $author->books()->with(['genre', 'reviews.reader'])->get();
+    }
+
+    public function getAuthorsWithBooks()
+    {
+        return Author::with(['books.genre', 'books.reviews'])->get();
+    }
+
 }

@@ -35,4 +35,14 @@ class AuthorService
     {
         return $this->authorRepository->delete($id);
     }
+
+    public function getAuthorBooks(int $authorId)
+    {
+        return $this->authorRepository->getAuthorBooks($authorId);
+    }
+
+    public function getAuthorsWithBooks()
+    {
+        return $this->authorRepository->getAuthorsWithBooks();
+    }
 }
