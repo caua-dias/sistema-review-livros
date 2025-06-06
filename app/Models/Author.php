@@ -8,4 +8,9 @@ class Author extends Model
 {
     protected $table = 'authors';
     protected $fillable = ['name','date_of_birth','biography' ];
+
+    public function books(): HasMany
+    {
+        return $this->hasMany(Book::class);
+    }
 }
